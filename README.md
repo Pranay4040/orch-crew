@@ -1,9 +1,12 @@
-# orch — a steerable multi-agent build crew for Claude Code
+# orch — a multi-AI-agent orchestrator for Claude Code
 
-`/orch <plan>` spawns a crew of Claude Code subagents that build software together: a **designer**,
-a **planner**, three **builders**, a **tester**, and an **archivist**. They message each other
-directly, coordinate through a file blackboard, and you can redirect them mid-build or stop the
-whole thing without losing work.
+**orch is a multi-AI-agent orchestrator.** You give it a plan; it runs a crew of AI agents that
+build the software together, talking to each other rather than reporting to you one at a time.
+
+`/orch <plan>` spawns seven Claude Code subagents: a **designer**, a **planner**, three
+**builders**, a **tester**, and an **archivist**. They message each other directly, coordinate
+through a shared file blackboard, and you can redirect them mid-build or stop the whole thing
+without losing work.
 
 Everything is Claude Code native — slash commands, subagents, skills, `SendMessage`, git worktrees.
 **No API keys, no services, nothing to install or keep running.**
