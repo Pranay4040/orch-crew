@@ -1,0 +1,22 @@
+# Personal ground rules
+
+## The `/orch` build crew
+
+`/orch <plan>` runs a multi-agent build crew (planner, designer, three builders, tester,
+archivist) coordinated through a file blackboard at `.orchestra/`. `/orch status` renders the
+ledger, `/orch board` republishes the dashboard, `/orch stop` winds down cleanly, `/halt`
+force-stops in an emergency.
+
+Three rules apply in any session that touches a run:
+
+1. **`.orchestra/` is machine-owned.** Don't hand-edit it while a run is live — the crew is
+   reading it. Read it freely.
+2. **Single-writer discipline.** Every blackboard file has exactly one writing agent
+   (`tasks.md` → planner, `context/digest.md` → archivist, `reports/X.md` → agent X). Writing
+   another agent's file races with them and silently destroys work.
+3. **Never kill agents without committing first.** Stopping a run means: flush reports → commit
+   every worktree branch → write `state.md` → *then* stop. An uncommitted worktree is work that
+   evaporates. `/halt` inverts the order out of necessity (kill, then salvage with git) and marks
+   the checkpoint `trust_reports: false`.
+
+The full protocol lives in the `orch-protocol` skill. Don't duplicate it elsewhere.
